@@ -1,0 +1,159 @@
+==============================================================
+ LIBRERÍA PÁGINAS ANDINAS - Requisitos del programa
+==============================================================
+
+Integrantes:
+  - Martin
+  - Romina
+
+Fecha: 25 de noviembre de 2026
+
+
+==============================================================
+ 1. REQUISITOS FUNCIONALES (RF)
+==============================================================
+
+RF-01  Registrar productos nuevos de los tres tipos: libro de papel,
+       libro digital y papelería.
+       Frase: "Vendo tres cosas: libros de papel, libros digitales y papelería."
+       Frase: "Quiero poder registrar productos nuevos"
+
+RF-02  Ver la lista de todos los productos.
+       Frase: "ver la lista de todo lo que tengo."
+
+RF-03  Buscar un producto por su nombre.
+       Frase: "Necesito encontrar rápido un producto por su nombre."
+
+RF-04  Registrar una venta para un cliente, con varios productos y varias
+       unidades de cada uno.
+       Frase: "Una venta es para un cliente y puede tener varios productos
+       y varias unidades de cada uno."
+
+RF-05  Mostrar al final de la venta cuánto paga el cliente.
+       Frase: "Al final quiero ver cuánto paga."
+
+RF-06  Mostrar el desglose de la venta (subtotal, descuento, IVA y total)
+       para que se vea de dónde sale cada valor.
+       Frase: "Mi contador, además, quiere ver de dónde sale cada centavo."
+
+
+==============================================================
+ 2. REGLAS DE NEGOCIO (RN)
+==============================================================
+
+--- Productos ---
+
+RN-01  Todo producto tiene código, nombre y precio (los tres son obligatorios).
+       Frase: "De todo necesito el código, el nombre y el precio."
+
+RN-02  No pueden existir dos productos con el mismo código.
+       Frase: "Una vez tuve dos libros distintos con el mismo código y fue un
+       desastre: cobré uno por otro durante un mes."
+
+RN-03  El libro de papel tiene autor y cantidad en bodega (stock).
+       Frase: "De los libros de papel me interesa el autor y cuántos tengo
+       en la bodega."
+
+RN-04  El libro digital tiene autor y formato, que solo puede ser PDF o EPUB.
+       Frase: "De los digitales, el autor y el formato, que puede ser PDF o EPUB."
+
+RN-05  El libro digital no tiene stock: nunca se acaba, siempre se puede vender.
+       Frase: "Esos nunca se me acaban, ¿no? Es el mismo archivo para cada cliente."
+
+RN-06  La papelería tiene marca y cantidad que queda (stock).
+       Frase: "De la papelería, la marca y cuántos me quedan."
+
+--- Inventario ---
+
+RN-07  No se puede vender más unidades de las que hay en stock
+       (se avisa con un mensaje claro).
+       Frase: "Lo que más me duele es vender algo que no tengo."
+
+RN-08  Al finalizar una venta se descuenta el stock de lo vendido, para que
+       no se pueda vender dos veces lo mismo.
+       Frase: "le cobré a una señora un libro que ya se había vendido en la mañana"
+
+--- Búsqueda ---
+
+RN-09  La búsqueda no distingue entre mayúsculas y minúsculas.
+       Frase: "cada uno lo escribe como quiere, con mayúsculas o sin mayúsculas."
+
+RN-10  La búsqueda encuentra el producto con solo una parte del nombre.
+       Frase: "Nadie se acuerda del nombre completo"
+       Frase: "quiero el de la soledad"
+
+--- Clientes y descuento ---
+
+RN-11  Los clientes ya están cargados en el programa; no se registran clientes nuevos.
+       Frase: "con tenerlos cargados en el programa me basta."
+
+RN-12  Los clientes socios (con tarjeta de socio) reciben 10 % de descuento.
+       Frase: "Algunos son de toda la vida y tienen tarjeta de socio.
+       A ellos les hago el 10 % de descuento"
+
+RN-13  El descuento de socio no se aplica a la papelería.
+       Frase: "En los cuadernos y esferos no, ahí no gano casi nada."
+
+--- Ventas e IVA ---
+
+RN-14  En cada línea de la venta la cantidad debe ser de al menos 1 unidad.
+       Frase: "varias unidades de cada uno"
+
+RN-15  Los libros (de papel y digitales) no pagan IVA (0 %).
+       Frase: "los libros no pagan IVA, ni los de papel ni los digitales"
+
+RN-16  La papelería paga IVA del 15 %.
+       Frase: "pero la papelería sí, el 15 %."
+
+--- Interfaz ---
+
+RN-17  El programa tiene ventanas fáciles de usar: botones grandes, sin
+       consola ni pantallas negras con letras.
+       Frase: "Y que sea fácil, mijo. Botones grandes, nada de pantallas negras con letras."
+
+
+==============================================================
+ 3. LO QUE NO SE INCLUYÓ (no tiene frase de origen en la sección 2)
+==============================================================
+
+Inicio de sesión, editar o eliminar productos, registrar clientes nuevos,
+historial de ventas, guardar en archivos o base de datos.
+(Ninguna de estas cosas la pidió don Ernesto.)
+
+
+==============================================================
+ 4. REGISTRO DE PROMPTS (GitHub Copilot en IntelliJ)
+==============================================================
+
+PROMPT 1 - Usado por: Martin
+  "Actúa como analista de requisitos. Del siguiente texto, lista los
+  requisitos funcionales y las reglas de negocio, incluidos los implícitos.
+  Para cada uno, cita la frase exacta que lo origina."
+  Para qué: sacar la lista inicial de requisitos del brief (sección 2).
+
+PROMPT 2 - Usado por: Romina
+  "Genera una ventana en Swing que use estas clases y métodos: [firmas
+  acordadas del paquete modelo]. La ventana no debe hacer cálculos."
+  Para qué: generar las pestañas de Productos y de Nueva venta en el
+  paquete vista, usando los métodos del modelo.
+
+PROMPT 3 - Usado por: Martin y Romina juntos
+  "Revisa mis clases Java del modelo contra esta lista de requisitos y dime
+  cuáles no se cumplen. No reescribas el código."
+  Para qué: comprobar que el modelo cumple todas las reglas de la sección 2
+  antes de probar el programa.
+
+Qué hizo mal la IA y cómo lo corregimos:
+
+  - En el Prompt 1, la IA inventó requisitos que nadie pidió (inicio de
+    sesión, editar y eliminar productos, guardar en archivo). Los quitamos
+    porque no tenían frase de origen en la sección 2.
+
+  - En el Prompt 1, la IA se saltó varios requisitos escondidos: que los
+    libros digitales no tienen stock, que el descuento de socio no aplica a
+    la papelería y que el código no se puede repetir. Los agregamos
+    revisando la lista contra el texto del cliente.
+
+  - En el Prompt 2, la IA puso en la ventana el cálculo del descuento y del
+    IVA. Lo movimos al modelo (clases LineaVenta y Venta), y la ventana
+    quedó solo mostrando los resultados.
